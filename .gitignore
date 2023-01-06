@@ -1,0 +1,14 @@
+.cache
+.coverage
+.DS_Store
+*.pyc
+*.whl
+
+*.egg-info/
+.idea/
+.mypy_cacahe/
+.tox/
+.vscode/
+__pycache__/
+build/
+dist/
