@@ -3,11 +3,12 @@
 ################################################################################
 
 PACKAGE_NAME = pyjarowinkler
+PYTHON = py
 MYPY_CACHE = .mypy_cache
 PYTEST_CACHE = .pytest_cache
 DIST = dist
 
-EGG_INFO = $(PACKAGE_NAME)-stubs.egg-info
+EGG_INFO = $(PACKAGE_NAME)_stubs.egg-info
 
 ################################################################################
 # Self Documenting Commands                                                    #
@@ -24,6 +25,8 @@ help:
 
 clean: ## Delete all compiled python files
 	@echo ">>> Cleaning"
+	find . -type f -name "*.py[co]" -delete
+	find . -type d -name "__pycache__" -delete
 	if [ -d "${MYPY_CACHE}" ]; then rm -r ${MYPY_CACHE}; fi
 	if [ -d "${PYTEST_CACHE}" ]; then rm -r ${PYTEST_CACHE}; fi
 	if [ -d "${EGG_INFO}" ]; then rm -r ${EGG_INFO}; fi
@@ -44,3 +47,7 @@ format: sort ## Format using autopep8
 mypy: ## Type checking python files
 	@echo ">>> Type checking python files"
 	mypy .
+
+build: ## Build package
+	@echo ">>> Building package"
+	${PYTHON} -m build
