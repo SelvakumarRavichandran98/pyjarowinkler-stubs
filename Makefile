@@ -48,6 +48,10 @@ mypy: ## Type checking python files
 	@echo ">>> Type checking python files"
 	mypy .
 
-build: ## Build package
+build: ## Building package
 	@echo ">>> Building package"
 	${PYTHON} -m build
+
+upload: ## Uploading package to Pypi
+	@echo ">>> Uploading package to Pypi"
+	twine upload ${DIST}/*
